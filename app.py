@@ -7,11 +7,12 @@ app.config.from_object(__name__)
 def home_page():
     return render_template('index2.html')
 
-@app.route('/', methods=['GET','POST'])
+@app.route('/result',methods=['GET','POST'])
 def Ans():
+    output=None
     if request.method=='POST':
-        num1 = request.form.get("num1", type=int)
-        num2 = request.form.get("num2", type=int)
+        num1=request.form.get("num1", type=int)
+        num2=request.form.get("num2", type=int)
         yor_job = request.form.get("yor_job")
 
         if(yor_job == 'Addition'):
@@ -28,8 +29,7 @@ def Ans():
         else:
             result = 'Error!'
         output = result
-        return render_template('index2.html', output=output)
-
+        return render_template('result.html',output=output)
 
 if __name__ == '__main__':
     app.run(debug=True)
